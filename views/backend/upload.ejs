@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome</title>
+    <!-- Include CSS for icons. -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Include Editor style. -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+    <% include ../partials/scripts.ejs %>
+</head>
+<body class="stretched dark">
+<!-- Content
+		============================================= -->
+<section id="content">
+
+    <div class="content-wrap">
+
+        <div class="container clearfix">
+
+            <div id="section-features" class="heading-block title-center page-section">
+                <h2>Upload</h2>
+                <div class="btn-group" role="group" >
+                    <a href="/create" <button type="button" class="btn btn-info">Novosti</button></a>
+                    <a href="/create/iskustva"<button type="button" class="btn btn-secondary">Iskustva</button></a>
+                    <button type="button" class="btn btn-secondary">Psihodelici</button>
+                </div>
+            </div>
+
+            <div class="postcontent">
+
+                <form ref='uploadForm'
+                      id='uploadForm'
+                      action='/upload/upload'
+
+                      method='post'
+                      encType="multipart/form-data">
+                    <div class="col-lg-6 bottommargin">
+                        <label>Basic Select File</label><br>
+                        <input id="input-6" type="file" class="file" name="img">
+                    </div>
+                    <input type="file"  multiple="multiple" accept="image/*" name="imgsss" class="btn btn-info" />
+                    <input type='submit' value='Upload!' class="btn btn-info" />
+                </form>
+
+            </div>
+
+
+
+            <div>
+
+            </div>
+
+
+            <div class="divider divider-short divider-center"><i class="icon-circle"></i></div>
+
+
+
+
+
+        </div>
+
+    </div>
+
+</section><!-- #content end -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+
+<!-- External JavaScripts
+============================================= -->
+<script src="js/jquery.js"></script>
+<script src="js/plugins.js"></script>
+
+<!-- Bootstrap File Upload Plugin -->
+<script src="js/components/bs-filestyle.js"></script>
+
+<!-- Footer Scripts
+============================================= -->
+<script src="js/functions.js"></script>
+
+<script >
+    $(document).ready(function() {
+        $("#input-5").fileinput({showCaption: false});
+
+        $("#input-6").fileinput({
+            showUpload: false,
+            maxFileCount: 10,
+            mainClass: "input-group-lg",
+            showCaption: true
+        });
+
+        $("#input-8").fileinput({
+            mainClass: "input-group-md",
+            showUpload: true,
+            previewFileType: "image",
+            browseClass: "btn btn-success",
+            browseLabel: "Pick Image",
+            browseIcon: "<i class=\"icon-picture\"></i> ",
+            removeClass: "btn btn-danger",
+            removeLabel: "Delete",
+            removeIcon: "<i class=\"icon-trash\"></i> ",
+            uploadClass: "btn btn-info",
+            uploadLabel: "Upload",
+            uploadIcon: "<i class=\"icon-upload\"></i> "
+        });
+
+        $("#input-9").fileinput({
+            previewFileType: "text",
+            allowedFileExtensions: ["txt", "md", "ini", "text"],
+            previewClass: "bg-warning",
+            browseClass: "btn btn-primary",
+            removeClass: "btn btn-secondary",
+            uploadClass: "btn btn-secondary",
+        });
+
+        $("#input-10").fileinput({
+            showUpload: false,
+            layoutTemplates: {
+                main1: "{preview}\n" +
+                "<div class=\'input-group {class}\'>\n" +
+                "   <div class=\'input-group-append\'>\n" +
+                "       {browse}\n" +
+                "       {upload}\n" +
+                "       {remove}\n" +
+                "   </div>\n" +
+                "   {caption}\n" +
+                "</div>"
+            }
+        });
+
+        $("#input-11").fileinput({
+            maxFileCount: 10,
+            allowedFileTypes: ["image", "video"]
+        });
+
+        $("#input-12").fileinput({
+            showPreview: false,
+            allowedFileExtensions: ["zip", "rar", "gz", "tgz"],
+            elErrorContainer: "#errorBlock"
+        });
+    });
+
+</script>
+
+</body>
+</html>

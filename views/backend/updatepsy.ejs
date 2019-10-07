@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome</title>
+    <% include ../partials/scripts.ejs %>
+</head>
+<body class="stretched dark">
+<!-- Content
+		============================================= -->
+<section id="content">
+
+    <div class="content-wrap">
+
+        <div class="container clearfix">
+
+            <div id="section-features" class="heading-block title-center page-section">
+                <a href="../admin"> <h2>Psajt Admin Panel</h2>
+                <div class="btn-group" role="group" >
+                    <a href="/update" <button type="button" class="btn btn-secondary">Novosti</button></a>
+                    <a href="/update/iskustva"<button type="button" class="btn btn-secondary">Iskustva</button></a>
+                    <a href="/update/psihodelici"<button type="button" class="btn btn-info">Psihodelici</button></a>
+                </div>
+            </div>
+
+
+
+
+            <div class="table-responsive center">
+                <table class="table table-bordered nobottommargin">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Istorijat</th>
+                        <th>Upotreba</th>
+                        <th>Efekti</th>
+                        <th>Farmakologija</th>
+                        <th>Mitovi</th>
+                        <th>Svojstva</th>
+                        <th>Toksičnost</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <% if (data) { %>
+                    <% data.forEach(function(psy){ %>
+                    <tr>
+                        <td><%= psy.psy_id %></td>
+                        <td><%= psy.name %></td>
+                        <td><%= psy.istorijat.slice(0, 30).replace(/<[^>]*>/g, '').replace(/&nbsp;/g,''); %></td>
+                        <td><%= psy.upotreba.slice(0,30).replace(/<[^>]*>/g, '').replace(/&nbsp;/g,''); %></td>
+                        <td><%= psy.efekti.slice(0, 30).replace(/<[^>]*>/g, '').replace(/&nbsp;/g,''); %></td>
+                        <td><%= psy.farmakologija.slice(0,30).replace(/<[^>]*>/g, '').replace(/&nbsp;/g,''); %></td>
+                        <td><%= psy.mitovi.slice(0, 30).replace(/<[^>]*>/g, '').replace(/&nbsp;/g,''); %></td>
+                        <td><%= psy.svojstva.slice(0, 30).replace(/<[^>]*>/g, '').replace(/&nbsp;/g,''); %></td>
+                        <td><%= psy.toksicnost.slice(0, 30).replace(/<[^>]*>/g, '').replace(/&nbsp;/g,''); %></td>
+
+                        <td><a href="/update/psihodelici/<%= psy.psy_id %>">
+                                <button type="button" class="btn btn-default">Update</button>
+                            </a></td>
+                        <td><a href="/delete/psihodelici/<%= psy.psy_id %>">
+                                <button type="button" class="btn btn-default">Delete</button>
+                            </a></td>
+                    </tr>
+                    <% }) %>
+                    <% } %>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div><!-- .postcontent end -->
+
+
+
+
+        <div class="divider divider-short divider-center"><i class="icon-circle"></i></div>
+
+
+
+
+
+    </div>
+
+
+
+    </div>
+
+</section><!-- #content end -->
+</body>
+</html>

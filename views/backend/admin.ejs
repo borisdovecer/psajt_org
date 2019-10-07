@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome</title>
+    <% include ../partials/scripts.ejs %>
+</head>
+<body class="stretched dark">
+<!-- Content
+		============================================= -->
+<section id="content">
+
+    <div class="content-wrap">
+
+        <div class="container clearfix">
+
+            <div id="section-features" class="heading-block title-center page-section">
+                <h2>Psajt Admin Panel</h2>
+                <span>Welcome, <%= user.username %></span>
+            </div>
+
+
+
+            <div class="col_one_third">
+                <div class="feature-box fbox-plain">
+                    <div class="fbox-icon" data-animate="bounceIn" data-delay="600">
+                        <a href="/create"><img src="images/icons/features/tick.png" alt="Responsive Layout"></a>
+                    </div>
+                    <a href="/create"><h3>Create</h3></a>
+                    <p>Kreirate nove članke, nova iskustva i sve ostalo što je novo i treba ga stvoriti</p>
+                </div>
+            </div>
+
+            <div class="col_one_third">
+                <div class="feature-box fbox-plain">
+                    <div class="fbox-icon" data-animate="bounceIn" data-delay="800">
+                        <a href="/update"><img src="images/icons/features/tools.png" alt="Retina Graphics"></a>
+                    </div>
+                    <a href="/update"><h3>Update</h3></a>
+                    <p>Izmenite sve što nije dobro, ili ga jednostavno obrišite</p>
+                </div>
+            </div>
+
+            <div class="col_one_third col_last">
+                <div class="feature-box fbox-plain">
+                    <div class="fbox-icon" data-animate="bounceIn" data-delay="1000">
+                        <a href="/upload"><img src="images/icons/features/map.png" alt="Powerful Performance"></a>
+                    </div>
+                    <h3>Upload</h3>
+                    <p>Photos, videos, files</p>
+                </div>
+            </div>
+            <div class="col_one_third">
+                <div class="feature-box fbox-plain">
+                    <div class="fbox-icon" data-animate="bounceIn" data-delay="600">
+                        <a href="/create"><img src="images/icons/features/seo.png" alt="Responsive Layout"></a>
+                    </div>
+                    <a href="/create"><h3>Users</h3></a>
+                    <p>Autori i svi ostali</p>
+                </div>
+            </div>
+
+            <div class="col_one_third">
+                <div class="feature-box fbox-plain">
+                    <div class="fbox-icon" data-animate="bounceIn" data-delay="800">
+                        <a href="/update"><img src="images/icons/features/retina.png" alt="Retina Graphics"></a>
+                    </div>
+                    <a href="/update"><h3>Trip Report</h3></a>
+                    <p>Sve što ljudi pošalju i treba da se objavi</p>
+                </div>
+            </div>
+
+            <div class="col_one_third col_last">
+                <div class="feature-box fbox-plain">
+                    <div class="fbox-icon" data-animate="bounceIn" data-delay="1000">
+                        <a href="/message"><img src="images/icons/features/responsive.png" alt="Powerful Performance"></a>
+                    </div>
+                    <h3>Massage</h3>
+                    <p>poruke i komentari</p>
+                </div>
+            </div>
+
+
+            <div class="clear"></div>
+
+
+
+            <div class="divider divider-short divider-center"><i class="icon-circle"></i></div>
+            <div class="center">
+                <span>Go <a href="/">Home</a> </span>
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+</section><!-- #content end -->
+</body>
+</html>

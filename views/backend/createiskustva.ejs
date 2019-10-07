@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome</title>
+    <!-- Include CSS for icons. -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Include Editor style. -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+
+    <% include ../partials/scripts.ejs %>
+</head>
+<body class="stretched dark">
+<!-- Content
+		============================================= -->
+<section id="content">
+
+    <div class="content-wrap">
+
+        <div class="container clearfix">
+
+            <div id="section-features" class="heading-block title-center page-section">
+                <h2>Create Iskustva</h2>
+                <div class="btn-group" role="group" >
+                    <a href="/create" <button type="button" class="btn btn-secondary">Novosti</button></a>
+                    <a href="/create/iskustva"<button type="button" class="btn btn-info">Iskustva</button></a>
+                    <button type="button" class="btn btn-secondary">Psihodelici</button>
+                </div>
+            </div>
+
+            <div class="postcontent">
+
+                <form role="form" action="/create/submiti" method="post" style="max-width: 35rem;">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input class="form-control" id="title" name="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" id="description" name="description" rows="8"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input class="form-control" id="location" name="location">
+                    </div>
+                    <div class="form-group">
+                        <label for="substance">Substance</label>
+                        <input class="form-control" id="substance" name="substance">
+                    </div>
+
+                    <div class="form-group hidden">
+                        <label for="author">author</label>
+                        <input class="form-control" id="author" name="author" value="<%= user.username %>">
+                    </div>
+
+
+                    <button type="submit" class="btn btn-default">Submit</button>
+
+                    <a href="/admin">
+                        <button type="button" class="btn btn-default">Back</button>
+                    </a>
+                </form>
+
+
+
+            </div>
+
+
+
+            <div class="divider divider-short divider-center"><i class="icon-circle"></i></div>
+
+
+
+
+
+        </div>
+
+
+
+    </div>
+
+</section><!-- #content end -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+<!-- Include Editor JS files. -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1//js/froala_editor.pkgd.min.js"></script>
+<!-- Initialize the editor. -->
+<script>
+    $(function() {
+        $('textarea').froalaEditor()
+    });
+</script>
+</body>
+</html>

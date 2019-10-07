@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome</title>
+    <!-- Include CSS for icons. -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Include Editor style. -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+
+    <% include ../partials/scripts.ejs %>
+</head>
+<body class="stretched dark">
+<!-- Content
+		============================================= -->
+<section id="content">
+
+    <div class="content-wrap">
+
+        <div class="container clearfix">
+
+            <div id="section-features" class="heading-block title-center page-section">
+                <h2>Edit</h2>
+                <div class="btn-group" role="group" >
+                    <a href="/update" <button type="button" class="btn btn-info">Novosti</button></a>
+                    <a href="/update/iskustva"<button type="button" class="btn btn-secondary">Iskustva</button></a>
+                    <a href="/update/psihodelici" <button type="button" class="btn btn-secondary">Psihodelici</button></a>
+                </div>
+            </div>
+
+            <div class="postcontent">
+                <% if (data) { %>
+                <% data.forEach(function(psy){
+                %>
+
+                <form role="form" action="/update/submitp" method="post" style="max-width: 35rem;">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input class="form-control" id="name" name="name" value="<%= psy.name %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="subname">Subname</label>
+                        <input class="form-control" id="subname" name="subname" value="<%= psy.subname %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="img">Image URL</label>
+                        <input class="form-control" id="img" name="img" value="<%= psy.img %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="istorijat">Istorijat</label>
+                        <textarea class="form-control" id="istorijat" name="istorijat"  rows="3">
+                            <%- psy.istorijat %>
+                        </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="upotreba">Upotreba</label>
+                        <textarea class="form-control" id="upotreba" name="upotreba"  rows="3">
+                            <%- psy.upotreba %>
+                        </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="efekti">Efekti</label>
+                        <textarea class="form-control" id="efekti" name="efekti"  rows="3">
+                            <%- psy.efekti %>
+                        </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="farmakologija">Farmakologija</label>
+                        <textarea class="form-control" id="farmakologija" name="farmakologija"  rows="3">
+                            <%- psy.farmakologija %>
+                        </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="mitovi">mitovi</label>
+                        <textarea class="form-control" id="mitovi" name="mitovi"  rows="3">
+                            <%- psy.mitovi %>
+                        </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="svojstva">Svojstva</label>
+                        <textarea class="form-control" id="svojstva" name="svojstva"  rows="3">
+                            <%- psy.svojstva %>
+                        </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="toksicnost">Toksičnost</label>
+                        <textarea class="form-control" id="toksicnost" name="toksicnost"  rows="3">
+                            <%- psy.toksicnost %>
+                        </textarea>
+                    </div>
+                    <div class="form-group hidden">
+                        <label for="id">id</label>
+                        <input class="form-control" id="id" name="id" value="<%= psy.psy_id %>">
+                    </div>
+
+
+
+
+
+                    <button type="submit" class="btn btn-default">Submit</button>
+
+                    <a href="/admin">
+                        <button type="button" class="btn btn-default">Back</button>
+                    </a>
+                </form>
+                <% }) %>
+                <% } %>
+
+
+            </div>
+
+
+
+            <div class="divider divider-short divider-center"><i class="icon-circle"></i></div>
+
+
+
+
+
+        </div>
+
+
+
+    </div>
+
+</section><!-- #content end -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+<!-- Include Editor JS files. -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1//js/froala_editor.pkgd.min.js"></script>
+<!-- Initialize the editor. -->
+<script>
+    $(function() {
+        $('textarea').froalaEditor()
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome</title>
+    <% include ../partials/scripts.ejs %>
+</head>
+<body class="stretched dark">
+<!-- Content
+		============================================= -->
+<section id="content">
+
+    <div class="content-wrap">
+
+        <div class="container clearfix">
+
+            <div id="section-features" class="heading-block title-center page-section">
+                <a href="../admin"> <h2>Psajt Admin Panel</h2>
+                    <div class="btn-group" role="group" >
+                        <a href="/message" <button type="button" class="btn btn-info">Komentari</button></a>
+                <a href="/message/poruke"<button type="button" class="btn btn-secondary">Poruke</button></a>
+
+            </div>
+        </div>
+
+
+
+
+        <div class="table-responsive center">
+            <table class="table table-bordered nobottommargin">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Text</th>
+                    <th>Category</th>
+                    <th>id</th>
+                    <th>allowed</th>
+                    <th>created on</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <% if (data) { %>
+                <% data.forEach(function(kom){ %>
+                <tr>
+                    <td><%= kom.kom_id %></td>
+                    <td><%= kom.name %></td>
+                    <td><%= kom.text %></td>
+                    <td><%= kom.categoy %></td>
+                    <td><%= kom.id %></td>
+                    <td><%= kom.allowed%></td>
+                    <td><%= kom.created_on %></td>
+
+
+                </tr>
+                <% }) %>
+                <% } %>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div><!-- .postcontent end -->
+
+
+
+
+    <div class="divider divider-short divider-center"><i class="icon-circle"></i></div>
+
+
+
+
+
+    </div>
+
+
+
+    </div>
+
+</section><!-- #content end -->
+</body>
+</html>

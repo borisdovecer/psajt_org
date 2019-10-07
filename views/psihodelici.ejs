@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:background-image="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Psajt</title>
+    <% include partials/scripts.ejs %>
+</head>
+
+<body class="stretched dark">
+<% include header.ejs %>
+<div class="clear"></div>
+
+<% if (data) { %>
+<% data.forEach(function(psy){ %>
+<div class="section parallax dark notopmargin noborder" style=" padding: 80px 0; background-image: url('/images/upload/<%= psy.img%>');background-size: cover;" data-bottom-top="background-position:0px 300px;" data-top-bottom="background-position:0px -300px;">
+    <div class="container clearfix">
+        <h1><%= psy.name %></h1>
+        <span><%= psy.subname %></span>
+    </div>
+</div>
+
+
+<!-- Content
+============================================= -->
+<section id="content">
+
+    <div class="content-wrap">
+
+        <div class="container clearfix">
+
+            <!-- Post Content
+            ============================================= -->
+            <div class="postcontent nobottommargin clearfix">
+
+                <div class="container">
+                    <a href="#istorijat" class="button button-border button-rounded button-<%= psy.color%>"><i class="icon-off"></i>Istorijat</a>
+                    <a href="#upotreba" class="button button-border button-rounded button-<%= psy.color%>"><i class="icon-signal"></i>Upotreba</a>
+                    <a href="#efekti" class="button button-border button-rounded button-<%= psy.color%>"><i class="icon-repeat"></i>Efekti</a>
+                    <a href="#farmakologija" class="button button-border button-rounded button-<%= psy.color%>"><i class="icon-inbox"></i>Farmakologija</a>
+                    <a href="#mitovi" class="button button-border button-rounded button-<%= psy.color%>"><i class="icon-lock3"></i>Mitovi</a>
+                    <a href="#svojstva" class="button button-border button-rounded button-<%= psy.color%>"><i class="icon-tags"></i>Tarapeutska svojstva</a>
+                    <a href="#toksicnost" class="button button-border button-rounded button-<%= psy.color%>"><i class="icon-bookmark2"></i>Toksičnost i zloupotreba</a>
+                </div>
+
+                <div >
+                    <div id="istorijat" style="padding-top: 90px">
+                        <h1 >Istorijat</h1>
+                        <%- psy.istorijat %>
+                    </div>
+
+                    <div class="line"></div>
+
+                    <div id="upotreba" style="padding-top: 90px">
+                        <h1>Upotreba</h1>
+                        <%- psy.upotreba %>
+                    </div>
+
+                    <div class="line"></div>
+
+                    <div id="efekti" style="padding-top: 90px">
+                        <h1 id="efekti">Efekti</h1>
+                        <%- psy.efekti %>
+                    </div>
+
+                    <div class="line"></div>
+
+                    <div id="farmakologija" style="padding-top: 90px">
+                        <h1>Farmakologija</h1>
+                        <%- psy.farmakologija %>
+                    </div>
+
+                    <div class="line"></div>
+
+                    <div id="mitovi" style="padding-top: 90px">
+                        <h1>Mitovi</h1>
+                        <%- psy.mitovi %>
+                    </div>
+
+                    <div class="line"></div>
+
+                    <div id="svojstva" style="padding-top: 90px">
+                        <h1>Tarapeutka svojstva</h1>
+                        <%- psy.svojstva %>
+                    </div>
+
+                    <div class="line"></div>
+
+                    <div id="toksicnost" style="padding-top: 90px">
+                        <h1>Toksičnost i zloupotreba</h1>
+                        <%- psy.toksicnost %>
+                    </div>
+
+                </div>
+
+
+
+
+
+                <div class="line"></div>
+
+
+
+
+
+            </div><!-- .postcontent end -->
+
+            <!-- Sidebar
+            ============================================= -->
+            <div class="sidebar nobottommargin col_last clearfix">
+                <div class="sidebar-widgets-wrap">
+
+                    <div class="widget widget_links clearfix">
+
+                        <h4>Linkovi</h4>
+                        <ul>
+                            <li><a href="/psihodelici/lsd"><div>LSD</div></a></li>
+                            <li><a href="/psihodelici/pecurke"><div>Pečurke</div></a></li>
+                            <li><a href="/psihodelici/dmt"><div>DMT</div></a></li>
+                            <li><a href="/psihodelici/meskalin"><div>Meskalin</div></a></li>
+                            <li><a href="/psihodelici/mdma"><div>MDMA</div></a></li>
+                            <li><a href="/psihodelici/ketamin"><div>Ketamin</div></a></li>
+                            <li><a href="/psihodelici/iboga"><div>Iboga</div></a></li>
+                            <li><a href="/psihodelici/2cb"><div>2-CB</div></a></li>
+                            <li><a href="/psihodelici/ostalo"><div>Ostalo</div></a></li>
+
+                        </ul>
+
+                    </div>
+
+                    <div class="widget clearfix">
+
+                        <h4>Dribbble Shots</h4>
+                        <div id="dribbble-widget" class="dribbble-shots masonry-thumbs" data-user="envato" data-count="16" data-type="user"></div>
+
+                    </div>
+
+
+
+                </div>
+            </div><!-- .sidebar end -->
+
+        </div>
+
+    </div>
+
+</section><!-- #content end -->
+
+<% }) %>
+<% } %>
+<% include footer.ejs %>
+
+<!-- Go To Top
+	============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- External JavaScripts
+============================================= -->
+<script src="/js/jquery.js"></script>
+<script src="/js/plugins.js"></script>
+
+<!-- Footer Scripts
+============================================= -->
+<script src="/js/functions.js"></script>
+
+</body>
+
+</html>

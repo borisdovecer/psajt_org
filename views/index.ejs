@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Psajt</title>
+    <% include partials/scripts.ejs %>
+</head>
+
+<body class="stretched sticky-responsive-menu dark">
+
+<div id="wrapper" class="clearfix">
+    <% include header.ejs %>
+    <div class="clear"></div>
+
+    <section id="content">
+
+        <div class="content-wrap">
+
+            <div class="container clearfix">
+
+                <div class="postcontent nobottommargin">
+
+                    <div class="col_three_fifth bottommargin-lg">
+                        <div class="fslider flex-thumb-grid grid-6" data-speed="400" data-arrows="true" data-thumbs="true" data-easing="easeOutQuad">
+                            <div class="flexslider">
+                                <div class="slider-wrap">
+                                    <% if (data) { %>
+                                    <% data.forEach(function(novosti){ %>
+                                    <div class="slide"  data-thumb="/images/upload/<%= novosti.img_name %>">
+                                        <a href="/novosti/<%= novosti.category %>/<%= novosti.novosti_id %>">
+                                            <img src="/images/upload/<%= novosti.img_name%>" style="height: 300px " alt="">
+                                            <div class="overlay">
+                                                <div class="text-overlay">
+                                                    <div class="text-overlay-title">
+                                                        <h3><%= novosti.title%></h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <% }) %>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col_two_fifth bottommargin-lg col_last">
+                        <% if (data) { %>
+                        <% data.slice(0,5).forEach(function(novosti){ %>
+                        <div class="spost clearfix">
+                            <div class="entry-c">
+                                <div class="entry-title">
+                                    <h4><a href="/novosti/<%= novosti.category%>/<%= novosti.novosti_id %>"><%= novosti.title.slice(0, 85) %>...</a></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                        <% } %>
+
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <div class="col_full bottommargin-lg clearfix">
+
+                        <div class="fancy-title title-border">
+                            <h3>Nauka</h3>
+                        </div>
+                        <% if(data2){
+                        data2.forEach(function (kultura) {
+
+                        %>
+
+                        <div class="col_one_third " style="width: 29%">
+                            <div class="ipost clearfix">
+                                <div class="entry-image">
+                                    <a href="/novosti/<%= kultura.category%>/<%= kultura.novosti_id %>"><img class="image_fade" src="/images/upload/<%= kultura.img_name%>" alt="Image"></a>
+                                </div>
+                                <div class="entry-title">
+                                    <h3><a href="/novosti/<%= kultura.category%>/<%= kultura.novosti_id %>"><%= kultura.title.slice(0, 70) %></a></h3>
+                                </div>
+                                <ul class="entry-meta clearfix">
+                                    <li><i class="icon-calendar3"></i> <%= kultura.created_on.toISOString().slice(0,-14) %></li>
+                                    <li><a href="blog-single.html#comments"><i class="icon-comments"></i>
+                                            <% var count = 0;
+                                                data4.forEach(function (kom) {
+                                                    if(kom.id === kultura.novosti_id){
+                                                        count = count + 1;
+                                                    }
+                                                }) %>
+                                            <%= count %>
+                                        </a></li>
+                                </ul>
+                                <div class="entry-content">
+                                    <p><%- kultura.description.slice(0,88) %></p>
+                                    <a href="/novosti/<%= kultura.category %>/<%= kultura.novosti_id %>"class="more-link">Read More</a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <%  }); } %>
+
+                        <div class="clear"></div>
+
+                    </div>
+
+                    <div class="bottommargin-lg">
+                        <img src="images/magazine/ad.jpg" alt="Ad" class="aligncenter notopmargin nobottommargin">
+                    </div>
+
+                    <div class="col_full bottommargin-lg clearfix">
+
+                        <div class="fancy-title title-border">
+                            <h3>Kultura</h3>
+                        </div>
+                        <% if(data3){
+                        data3.forEach(function (kultura) {
+
+                        %>
+
+                        <div class="col_one_third " style="width: 29%">
+                            <div class="ipost clearfix">
+                                <div class="entry-image">
+                                    <a href="/novosti/<%= kultura.category%>/<%= kultura.novosti_id %>"><img class="image_fade" src="/images/upload/<%= kultura.img_name%>" alt="Image"></a>
+                                </div>
+                                <div class="entry-title">
+                                    <h3><a href="/novosti/<%= kultura.category%>/<%= kultura.novosti_id %>"><%= kultura.title%></a></h3>
+                                </div>
+                                <ul class="entry-meta clearfix">
+                                    <li><i class="icon-calendar3"></i> <%= kultura.created_on.toISOString().slice(0,-14) %></li>
+                                    <li><a href="blog-single.html#comments"><i class="icon-comments"></i>
+                                            <% var count = 0;
+                                                data4.forEach(function (kom) {
+                                                    if(kom.id === kultura.novosti_id){
+                                                        count = count + 1;
+                                                    }
+                                                }) %>
+                                            <%= count %>
+                                        </a></li>
+                                </ul>
+                                <div class="entry-content">
+                                    <p><%- kultura.description.slice(0,88) %></p>
+                                </div>
+                                <a href="/novosti/<%= kultura.category %>/<%= kultura.novosti_id %>"class="more-link">Read More</a>
+
+                            </div>
+                        </div>
+
+                        <%  }); } %>
+
+                        <div class="clear"></div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="sidebar nobottommargin col_last">
+
+                    <div class="sidebar-widgets-wrap">
+
+                        <div class="widget widget_links clearfix">
+
+                            <h4>Kategorije</h4>
+                            <div class="col_half nobottommargin">
+                                <ul>
+                                    <li><a href="#">Edukacija</a></li>
+                                    <li><a href="#">Tehnologija</a></li>
+                                    <li><a href="#">Nauka</a></li>
+                                    <li><a href="#">Sport</a></li>
+                                    <li><a href="#">Sta god</a></li>
+                                    <li><a href="#">Politika</a></li>
+                                    <li><a href="#">Business</a></li>
+                                </ul>
+                            </div>
+                            <div class="col_half nobottommargin col_last">
+                                <ul>
+                                    <li><a href="#">Lifestyle</a></li>
+                                    <li><a href="#">Travel</a></li>
+                                    <li><a href="#">Cricket</a></li>
+                                    <li><a href="#">Football</a></li>
+                                    <li><a href="#">Education</a></li>
+                                    <li><a href="#">Photography</a></li>
+                                    <li><a href="#">Nature</a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </section>
+    <% include footer.ejs %>
+
+</div>
+
+
+        <!-- Go To Top
+            ============================================= -->
+        <div id="gotoTop" class="icon-angle-up"></div>
+
+        <!-- External JavaScripts
+        ============================================= -->
+        <script src="js/jquery.js"></script>
+        <script src="js/plugins.js"></script>
+
+        <!-- Footer Scripts
+        ============================================= -->
+        <script src="js/functions.js"></script>
+
+
+</body>
+
+</html>

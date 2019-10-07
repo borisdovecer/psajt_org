@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    <% include partials/scripts.ejs %>
+</head>
+
+<body class="stretched">
+
+<!-- Content
+    ============================================= -->
+<section id="content">
+
+    <div class="content-wrap nopadding">
+
+        <div class="section nopadding nomargin" style="width: 100%; height: 100%; position: absolute; left: 0; padding-top: 110px; background: #218838;"></div>
+
+        <div class="section nobg full-screen nopadding nomargin">
+            <div class="container-fluid vertical-middle divcenter clearfix">
+
+
+
+                <div class="card divcenter noradius noborder" style="max-width: 400px;">
+                    <div class="card-body" style="padding-left: 40px; padding-top: 120px;">
+                        <form id="login-form" name="login-form" class="nobottommargin" action="/auth/login" method="post">
+                            <h3>Login to your Account</h3>
+
+                            <div class="col_full">
+                                <label for="login-form-username">Username:</label>
+                                <input type="text" id="login-form-username" name="username" value="" class="form-control not-dark" />
+                            </div>
+
+                            <div class="col_full">
+                                <label for="login-form-password">Password:</label>
+                                <input type="password" id="login-form-password" name="password" value="" class="form-control not-dark" />
+                            </div>
+
+                            <div class="col_full nobottommargin">
+                                <button class="button button-3d button-black nomargin" type="submit" id="login-form-submit" name="login-form-submit" value="login">Login</button>
+                            </div>
+                        </form>
+
+                        <div class="line line-sm"></div>
+                        <div style="padding-top: 120px"></div>
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+</section><!-- #content end -->
+
+
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome</title>
+    <% include ../partials/scripts.ejs %>
+</head>
+<body class="stretched dark">
+<!-- Content
+		============================================= -->
+<section id="content">
+
+    <div class="content-wrap">
+
+        <div class="container clearfix">
+
+            <div id="section-features" class="heading-block title-center page-section">
+                <a href="../admin"> <h2>Psajt Admin Panel</h2>
+                <div class="btn-group" role="group" >
+                    <a href="/update" <button type="button" class="btn btn-secondary">Novosti</button></a>
+                    <a href="/update/iskustva"<button type="button" class="btn btn-info">Iskustva</button></a>
+                    <a href="/update/psihodelici"<button type="button" class="btn btn-secondary">Psihodelici</button></a>
+                </div>
+            </div>
+
+
+
+
+            <div class="table-responsive center">
+                <table class="table table-bordered nobottommargin">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Author</th>
+                        <th>Location</th>
+                        <th>Substance</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <% if (data) { %>
+                    <% data.forEach(function(isk){ %>
+                    <tr>
+                        <td><%= isk.iskustvo_id %></td>
+                        <td><%= isk.title %></td>
+                        <td><%= isk.description.slice(0, 150).replace(/<[^>]*>/g, '').replace(/&nbsp;/g,''); %></td>
+                        <td><%= isk.author %></td>
+                        <td><%= isk.location %></td>
+                        <td><%= isk.substance %></td>
+                        <td><a href="/update/iskustva/<%= isk.iskustvo_id %>">
+                                <button type="button" class="btn btn-default">Update</button>
+                            </a></td>
+                        <td><a href="/delete/iskustva/<%= isk.iskustvo_id %>">
+                                <button type="button" class="btn btn-default">Delete</button>
+                            </a></td>
+                    </tr>
+                    <% }) %>
+                    <% } %>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div><!-- .postcontent end -->
+
+
+
+
+        <div class="divider divider-short divider-center"><i class="icon-circle"></i></div>
+
+
+
+
+
+    </div>
+
+
+
+    </div>
+
+</section><!-- #content end -->
+</body>
+</html>

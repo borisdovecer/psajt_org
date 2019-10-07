@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome</title>
+    <!-- Include CSS for icons. -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Include Editor style. -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+
+    <% include ../partials/scripts.ejs %>
+</head>
+<body class="stretched dark">
+<!-- Content
+		============================================= -->
+<section id="content">
+
+    <div class="content-wrap">
+
+        <div class="container clearfix">
+
+            <div id="section-features" class="heading-block title-center page-section">
+                <h2>Edit</h2>
+                <div class="btn-group" role="group" >
+                    <a href="/update" <button type="button" class="btn btn-info">Novosti</button></a>
+                    <a href="/update/iskustva"<button type="button" class="btn btn-secondary">Iskustva</button></a>
+                    <a href="/update/psihodelici" <button type="button" class="btn btn-secondary">Psihodelici</button></a>
+                </div>
+            </div>
+
+            <div class="postcontent">
+                <% if (data) { %>
+                <% data.forEach(function(novosti){
+                %>
+
+                <form role="form" action="/update/submit" method="post" style="max-width: 35rem;">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input class="form-control" id="title" name="title" value="<%= novosti.title %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" id="description" name="description"  rows="3">
+                            <%- novosti.description %>
+                        </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="img">Image URL</label>
+                        <input class="form-control" id="img" name="img" value="<%= novosti.img %>">
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Select image</button>
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-body">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Select image</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <script>
+                                                function changeValue(o){
+                                                    document.getElementById('img').value=o;
+                                                }
+                                            </script>
+                                            <div class="table-responsive center">
+                                                <table class="table table-bordered nobottommargin">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Name</th>
+                                                        <th>Image</th>
+                                                        <th>Select</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                    <% if (data) { %>
+                                                    <% data.forEach(function(img){ %>
+                                                    <tr>
+                                                        <td><%= img.img_id %></td>
+                                                        <td><%= img.img_name %></td>
+                                                        <td><img class="card-img-top img-fluid" style="width: 160px; height: 70px" src="images/upload/<%= img.img_name %>" alt="slika"></td>
+                                                        <td>
+                                                            <button type="button" id="<%= img.img_id %>" onclick="changeValue(<%= img.img_id %>)">Select</button>
+                                                        </td>
+
+                                                    </tr>
+                                                    <% }) %>
+                                                    <% } %>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group hidden">
+                        <label for="id">id</label>
+                        <input class="form-control" id="id" name="id" value="<%= novosti.novosti_id %>">
+                    </div>
+
+
+
+
+                    <button type="submit" class="btn btn-default">Submit</button>
+
+                    <a href="/admin">
+                        <button type="button" class="btn btn-default">Back</button>
+                    </a>
+                </form>
+                <% }) %>
+                <% } %>
+
+
+            </div>
+
+
+
+            <div class="divider divider-short divider-center"><i class="icon-circle"></i></div>
+
+
+
+
+
+        </div>
+
+
+
+    </div>
+
+</section><!-- #content end -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+<!-- Include Editor JS files. -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1//js/froala_editor.pkgd.min.js"></script>
+<!-- Initialize the editor. -->
+<script>
+    $(function() {
+        $('textarea').froalaEditor()
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Psajt</title>
+    <% include partials/scripts.ejs %>
+</head>
+
+<body class="stretched dark">
+
+<!-- Document Wrapper
+============================================= -->
+<div id="wrapper" class="clearfix">
+
+
+    <% include header.ejs %>
+
+    <!-- Page Title
+    ============================================= -->
+    <section id="page-title">
+
+        <div class="container clearfix">
+            <h1>Novosti</h1>
+            <div>
+                <a href="/novosti/kultura">Kultura</a> /
+                <a href="/novosti/nauka">Nauka</a> /
+                <a href="/novosti/spiritualnost">Spiritualnost</a> /
+                <a href="/novosti/iskustva">Iskustva</a> /
+                <a href="/novosti/ekologija">Ekologija</a> /
+                <a href="/novosti/politika">Politika</a> /
+                <a href="/novosti/ostalo">Ostalo</a> /
+
+            </div>
+
+        </div>
+
+    </section><!-- #page-title end -->
+
+    <!-- Content
+		============================================= -->
+    <section id="content">
+
+        <div class="content-wrap">
+
+            <div class="container clearfix">
+
+                <!-- Post Content
+                ============================================= -->
+                <div class="postcontent nobottommargin clearfix">
+
+                    <div class="single-post nobottommargin">
+
+
+                        <!-- Single Post
+                        ============================================= -->
+                        <div class="entry clearfix">
+
+                            <% if (data) { %>
+                            <% data.slice(0, 1).forEach(function(vesti){ %>
+                            <!-- Entry Title
+                            ===================
+                            ========================== -->
+                            <div class="entry-title">
+                                <h2><%= vesti.title %></h2>
+                            </div><!-- .entry-title end -->
+
+                            <!-- Entry Meta
+                            ============================================= -->
+                            <ul class="entry-meta clearfix">
+                                <li><i class="icon-calendar3"></i> <%= vesti.created_on.toISOString().slice(0,-14) %></li>
+                                <li><a href="#"><i class="icon-user"></i> <%= vesti.author %></a></li>
+
+                                <li><a href="#comments"><i class="icon-comments"></i>
+                                        <% if(vesti.name != null){ %>
+                                        <%= data.length %>
+                                        <% } %>
+                                        Comments</a></li>
+
+                            </ul><!-- .entry-meta end -->
+
+                            <!-- Entry Content
+                            ============================================= -->
+                            <div class="entry-content notopmargin">
+
+                                <!-- Entry Image
+                                ============================================= -->
+                                <div class="entry-image alignleft">
+                                    <a href="#"><img src="/images/upload/<%= vesti.img_name %>" alt="Blog Single"></a>
+                                </div><!-- .entry-image end -->
+
+                                <p><%- vesti.description %></p>
+
+                                 <!-- Post Single - Content End -->
+
+
+
+                                <div class="clear"></div>
+
+
+                                <!-- Comments
+							============================================= -->
+                                <div id="comments" class="clearfix">
+                                    <% if(vesti.name != null){%>
+                                    <h3 id="comments-title"><span><%= data.length %></span> Comments</h3>
+
+
+                                    <!-- Comments List
+                                    ============================================= -->
+                                    <ol class="commentlist clearfix">
+                                        <% if (vesti.name != null){%>
+                                        <% data.forEach(function(kom){ %>
+                                        <li class="comment even thread-even depth-1" id="li-comment-1">
+
+                                            <div id="comment-1" class="comment-wrap clearfix">
+
+                                                <div class="comment-meta">
+
+                                                    <div class="comment-author vcard">
+
+													<span class="comment-avatar clearfix">
+													<img alt='' src='http://0.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=60' class='avatar avatar-60 photo avatar-default' height='60' width='60' /></span>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="comment-content clearfix">
+
+                                                    <div class="comment-author"><%= kom.name%><span><a href="#" title="Permalink to this comment"><%=  kom.comcreated_on %></a></span></div>
+
+                                                    <p><%= kom.text %></p>
+
+                                                    <a class='comment-reply-link' href='#'><i class="icon-reply"></i></a>
+
+                                                </div>
+
+                                                <div class="clear"></div>
+
+                                            </div>
+                                        </li>
+                                        <% })} %>
+
+
+
+                                    </ol><!-- .commentlist end -->
+                                    <% }%>
+                                    <div class="clear"></div>
+
+                                    <!-- Comment Form
+                                    ============================================= -->
+                                    <div id="respond" class="clearfix">
+
+                                        <h3>Leave a <span>Comment</span></h3>
+
+                                        <form class="clearfix" action="/novosti/submit" method="post" id="commentform">
+
+                                            <div class="col_one_third">
+                                                <label for="name">Name</label>
+                                                <input type="text" name="name" id="name" value="" size="22" tabindex="1" class="sm-form-control" />
+                                            </div>
+                                            <div class="col_one_third hidden">
+                                                <label for="id">id</label>
+                                                <input type="text" name="id" id="id" value="<%= id %>" size="22" tabindex="1" class="sm-form-control" />
+                                            </div>
+                                            <% data.slice(0, 1).forEach(function(vesti){ %>
+
+                                            <% if(vesti.name != null){%>
+                                            <div class="hidden">
+                                                <label for="comm">Comments</label>
+                                                <input type="text" name="comm" id="comm" value="<%= data.length+1%>" size="22" tabindex="1" class="sm-form-control" />
+                                            </div>
+                                                <% } else{ %>
+                                            <div class="hidden">
+                                                <label for="comm">Comments</label>
+                                                <input type="text" name="comm" id="comm" value="<%= data.length%>" size="22" tabindex="1" class="sm-form-control" />
+                                            </div>
+
+                                            <% }%>
+
+
+                                            <% });%>
+
+
+                                            <div class="clear"></div>
+
+                                            <div class="col_full">
+                                                <label for="comment">Comment</label>
+                                                <textarea name="comment" cols="58" rows="7" tabindex="4" class="sm-form-control"></textarea>
+                                            </div>
+
+                                            <div class="col_full nobottommargin">
+                                                <button name="submit" type="submit" id="submit-button" tabindex="5" value="Submit" class="button button-3d nomargin">Submit Comment</button>
+                                            </div>
+
+                                        </form>
+
+                                    </div><!-- #respond end -->
+
+                                </div><!-- #comments end -->
+
+                            </div>
+                        </div><!-- .entry end -->
+
+                        <% }) %>
+                        <% } %>
+
+
+                    </div>
+
+                </div><!-- .postcontent end -->
+
+                <!-- Sidebar
+                ============================================= -->
+                <div class="sidebar nobottommargin col_last clearfix">
+                    <div class="sidebar-widgets-wrap">
+
+
+
+                        <div class="widget clearfix">
+
+                            <div class="tabs nobottommargin clearfix" id="sidebar-tabs">
+
+                                <ul class="tab-nav clearfix">
+                                    <li><a href="#tabs-1">Najpopularnije</a></li>
+                                    <li><a href="#tabs-2">Najnovije</a></li>
+                                </ul>
+
+                                <div class="tab-container">
+
+                                    <div class="tab-content clearfix" id="tabs-1">
+                                        <div id="popular-post-list-sidebar">
+
+                                            <% data3.forEach(function (novosti) {%>
+
+
+                                            <div class="spost clearfix">
+                                                <div class="entry-image">
+                                                    <a href="/novosti/<%= novosti.category%>/<%= novosti.novosti_id %>" class="nobg"><img class="rounded-circle" src="/images/upload/<%= novosti.img_name%>" alt=""></a>
+                                                </div>
+                                                <div class="entry-c">
+                                                    <div class="entry-title">
+                                                        <h4><a href="/novosti/<%= novosti.category%>/<%= novosti.novosti_id %>"><%= novosti.title.slice(0,55);%></a></h4>
+                                                    </div>
+                                                    <ul class="entry-meta">
+                                                        <li><i class="icon-comments-alt"></i>
+
+                                                            <% var count = 0;
+                                                            data4.forEach(function (kom) {
+                                                            if(kom.id === novosti.novosti_id){
+                                                                count = count + 1;
+                                                            }});
+                                                            %>
+                                                            <%= count %> Comments</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                           <% });%>
+
+                                        </div>
+                                    </div>
+                                    <div class="tab-content clearfix" id="tabs-2">
+                                        <div id="recent-post-list-sidebar">
+
+                                            <% data2.forEach(function (novosti) { %>
+
+                                            <div class="spost clearfix">
+                                                <div class="entry-image">
+                                                    <a href="/novosti/<%= novosti.category%>/<%= novosti.novosti_id %>" class="nobg"><img class="rounded-circle" src="/images/upload/<%= novosti.img_name%>" alt=""></a>
+                                                </div>
+                                                <div class="entry-c">
+                                                    <div class="entry-title">
+                                                        <h4><a href="/novosti/<%= novosti.category%>/<%= novosti.novosti_id %>"><%= novosti.title.slice(0, 70) %></a></h4>
+                                                    </div>
+                                                    <ul class="entry-meta">
+                                                        <li><%= novosti.created_on.toISOString().slice(0,-14) %></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                           <% })%>
+
+
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                </div><!-- .sidebar end -->
+
+            </div>
+
+        </div>
+
+    </section><!-- #content end -->
+    <% include footer.ejs %>
+
+
+
+</div><!-- #wrapper end -->
+
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- External JavaScripts
+============================================= -->
+<script src="/js/jquery.js"></script>
+<script src="/js/plugins.js"></script>
+
+<!-- Footer Scripts
+============================================= -->
+<script src="/js/functions.js"></script>
+
+</body>
+
+</html>
